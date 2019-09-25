@@ -15,6 +15,12 @@ var spotify = new Spotify(keys.spotify);
 var userRequest = process.argv[2];
 var mediaRequest = process.argv[3];
 
+console.log("");
+console.log("Welcome to LIRI...");
+console.log("------------------");
+console.log("User request is: " + userRequest);
+console.log("Media request is: " + mediaRequest);
+
 //respond differently based on user request
 switch (userRequest) {
   case "concert-this":
@@ -51,20 +57,35 @@ switch (userRequest) {
         console.log(error.config);
       });
   case "spotify-this-song":
-    //Run the Spotify.search to get concert infomation
-    spotify.search({ type: "track", query: "spotify-this-song" }, function (err, data) {
-      if (err) {
-        return console.log("Error occurred" + err);
-      }
-    });
-    text = "Here's the song you requested";
+    //Run the Spotify.search to get song infomation
+    spotify.search({ type: 'track', query: mediaRequest, limit: 1 })
+      .then(function (response) {
+        console.log(response);
+        console.log(response.items.artist);
+        /*        console.log(response.data.items[0].artists);
+                console.log(response.items[0].name);
+                console.log(response.items[0].preview_url);
+                console.log(response.items[0].album);
+        */
+      })
+      .catch(function (err) {
+        console.log("Error occurred" + err);
+      });
+
   case "movie-this":
-    text = "Here's the movie you requested";
+    if (typeof mediaRequest === "undefined") {
+      mediaRequest = "Mr. Nobody";
+    }
+    axios.get("http://www.omdbapi.com/?t=" + mediaRequest + "&y=&plot=short&apikey=trilogy").then(
+      function (response) {
+        // Then we print out the imdbRating
+        console.log("The movie " + mediaRequest + " has a rating of: " + response.data.imdbRating);
+      });
   case "do-what-it-says":
-    text = "You told me to do this:";
   default:
-    text = "Oh no";
+    break;
 }
+
 // Run the axios.get function...
 
 /*
