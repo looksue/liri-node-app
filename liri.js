@@ -24,6 +24,39 @@ console.log("Media request is: " + mediaRequest);
 
 //respond differently based on user request
 if (userRequest === "concert-this") {
+  funConcertThis(mediaRequest);
+} else if (userRequest === "spotify-this-song") {
+  funSpotifyThisSong(mediaRequest);
+} else if (userRequest === "movie-this") {
+  funMovieThis(mediaRequest);
+} else if (userRequest === "do-what-it-says") {
+  //open the file
+
+  //read in the first line of text
+
+  //close the file
+
+  //parse the first string into userRequest
+
+  //parse the second string into mediaRequest
+
+  //execute the command
+  if (userRequest === "concert-this") {
+    funConcertThis(mediaRequest);
+  } else if (userRequest === "spotify-this-song") {
+    funSpotifyThisSong(mediaRequest);
+  } else if (userRequest === "movie-this") {
+    funMovieThis(mediaRequest);
+  } else {
+    return;
+  }
+} else {
+  return;
+}
+
+// =======================================================================
+
+function funConcertThis(mediaRequest) {
   if (typeof mediaRequest === "undefined") {
     mediaRequest = "Maroon+5";
   }
@@ -58,7 +91,9 @@ if (userRequest === "concert-this") {
       }
       console.log(error.config);
     });
-} else if (userRequest === "spotify-this-song") {
+}
+
+function funSpotifyThisSong(mediaRequest) {
   if (typeof mediaRequest === "undefined") {
     mediaRequest = "The+Sign";
   }
@@ -76,7 +111,9 @@ if (userRequest === "concert-this") {
     .catch(function (err) {
       console.log("Error occurred" + err);
     });
-} else if (userRequest === "movie-this") {
+}
+
+function funMovieThis(mediaRequest) {
   // if the movie isn't supplied, default to Mr. Nobody
   if (typeof mediaRequest === "undefined") {
     mediaRequest = "Mr. Nobody";
@@ -92,9 +129,5 @@ if (userRequest === "concert-this") {
       console.log("Language of the movie: " + response.data.Language);
       console.log("Plot of the movie: " + response.data.Plot);
       console.log("Actors in the movie: " + response.data.Actors);
-
     });
-} else if (userRequest === "do-what-it-says") {
-} else {
 }
-
