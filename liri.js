@@ -62,14 +62,15 @@ if (userRequest === "concert-this") {
     mediaRequest = "The+Sign";
   }
   //Run the Spotify.search to get song infomation
-  spotify.search({ type: 'track', query: mediaRequest, limit: 1 })
+  spotify.search({ type: 'track', query: mediaRequest, limit: 5 })
     .then(function (response) {
-//      console.log(response);
-//      console.log(response.tracks.items[0].album);
-      console.log("Artist name is: " + response.tracks.items[0].artists[0].name);
       console.log("Song name is: " + mediaRequest);
-      console.log("Preview URL is: " + response.tracks.items[0].preview_url);
-      console.log("Album is: " + response.tracks.items[0].album.name);      
+      for (i = 0; i < response.tracks.items.length; i++) {
+        //      console.log(response.tracks.items[0].album);
+        console.log("Artist name is: " + response.tracks.items[i].artists[0].name);
+        console.log("Album is: " + response.tracks.items[i].album.name);
+        console.log("Preview URL is: " + response.tracks.items[i].preview_url);
+      }
     })
     .catch(function (err) {
       console.log("Error occurred" + err);
@@ -88,22 +89,3 @@ if (userRequest === "concert-this") {
 } else {
 }
 
-// Run the axios.get function...
-
-/*
-// The axios.get function takes in a URL and returns a promise (just like $.ajax)
-axios.get("https://www.spotify.com/us/").then(
-  function (response) {
-    // If the axios was successful...
-    // Then log the body from the site!
-    console.log(response.data);
-  });
-// Run the axios.get function...
-// The axios.get function takes in a URL and returns a promise (just like $.ajax)
-axios.get("http://www.omdbapi.com/").then(
-  function (response) {
-    // If the axios was successful...
-    // Then log the body from the site!
-    console.log(response.data);
-  });
-*/
