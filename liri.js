@@ -5,8 +5,9 @@ var keys = require("./keys.js");
 
 //include the packages (remember to run "npm install <package>")
 var axios = require("axios");
-var Spotify = require('node-spotify-api');
-var moment = require('moment');
+var Spotify = require("node-spotify-api");
+var moment = require("moment");
+var fs = require("fs");
 
 // open a new connection to Spotify using the ID and Key
 var spotify = new Spotify(keys.spotify);
@@ -80,10 +81,18 @@ if (userRequest === "concert-this") {
   if (typeof mediaRequest === "undefined") {
     mediaRequest = "Mr. Nobody";
   }
-  axios.get("http://www.omdbapi.com/?t=" + mediaRequest + "&y=&plot=short&apikey=trilogy").then(
+  axios.get("http://www.omdbapi.com/?t=" + mediaRequest + "&y=&plot=short&apikey=trilogy&tomatoes=True").then(
     function (response) {
       // Then we print out the imdbRating
-      console.log("The movie " + mediaRequest + " has a rating of: " + response.data.imdbRating);
+      console.log("The movie requested is " + mediaRequest);
+      console.log("The movie was released on : " + response.data.Released);
+      console.log("The movie has a rating of: " + response.data.imdbRating);
+      console.log("Country where the movie was produced: " + response.data.Country);
+      console.log("Rotten Tomatoes Rating of: " + response.data.tomatoRating);
+      console.log("Language of the movie: " + response.data.Language);
+      console.log("Plot of the movie: " + response.data.Plot);
+      console.log("Actors in the movie: " + response.data.Actors);
+
     });
 } else if (userRequest === "do-what-it-says") {
 } else {
