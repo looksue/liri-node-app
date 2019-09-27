@@ -61,6 +61,7 @@ function funConcertThis(mediaRequest) {
   if (typeof mediaRequest === "undefined") {
     mediaRequest = "Maroon+5";
   }
+  mediaRequest = mediaRequest.replace(/"/g, ""); //strip double quotes, they break bands in town
   // Run the axios.get function to get concert information
   axios.get("https://rest.bandsintown.com/artists/" + mediaRequest + "/events?app_id=codingbootcamp")
     .then(function (response) {
