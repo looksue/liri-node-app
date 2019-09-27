@@ -97,7 +97,7 @@ function funConcertThis(mediaRequest) {
 
 function funSpotifyThisSong(mediaRequest) {
   if (typeof mediaRequest === "undefined") {
-    mediaRequest = "The+Sign";
+    mediaRequest = "Ace of Base The Sign";
   }
   //Run the Spotify.search to get song infomation
   spotify.search({ type: 'track', query: mediaRequest, limit: 5 })
