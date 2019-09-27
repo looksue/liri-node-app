@@ -3,7 +3,7 @@
 
 This program takes two arguments. The first specifies the type of media to search, and the second specifies the name of the concert, song, or movie to find. Optionally, the user can provide a single argument that will make the program open the text file random.txt and read its instructions from there. 
 
-**Usage:** > node liri.js ( concert-this | spotify-this-song | movie-this | do-what-it-says ) ( *optional* "media name" ) 
+**Usage:** >node liri.js ( concert-this | spotify-this-song | movie-this | do-what-it-says ) ( *optional* "media name" ) 
 
 **Summary:**
     This is a node app that uses a language interpretation and recognition Interface and uses command line prompts to take in parameters and return given data. It sends requests to Bands in Town(concerts), Spotify(songs), and OMDB(movies). 
