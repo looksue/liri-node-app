@@ -30,16 +30,17 @@ if (userRequest === "concert-this") {
 } else if (userRequest === "movie-this") {
   funMovieThis(mediaRequest);
 } else if (userRequest === "do-what-it-says") {
-  //open the file
-
-  //read in the first line of text
-
-  //close the file
-
-  //parse the first string into userRequest
-
-  //parse the second string into mediaRequest
-
+  //open the file, read it all into a variable, I'll wait
+  var strRandom = fs.readFileSync('./random.txt', function (err, data) {
+    if (err) throw err;
+    console.log(data);
+  });
+  //parse the file into our variables
+  userRequest = strRandom.toString().split(",", 1);                      // take up to first space as userRequest
+  userRequest = userRequest.toString();
+  mediaRequest = strRandom.toString().substring(userRequest.length + 1); // take rest of string as mediaRequest
+  console.log(userRequest);
+  console.log(mediaRequest);
   //execute the command
   if (userRequest === "concert-this") {
     funConcertThis(mediaRequest);
